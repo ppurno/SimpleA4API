@@ -4,6 +4,8 @@
 """
 Docstring: 
 """
+from flask import jsonify
+
 from middleware import index, db
 
 
@@ -16,6 +18,10 @@ def initialise_routes(app):
 
 
 def list_routes(app):
+    routes = []
     for route in app.url_map.iter_rules():
-        print(route)
-    return "Routes info"
+        routes.append({'Route': str(route),
+                       'Endpoint': route.endpoint(),
+                       'Methods': list(route.methods)
+                       })
+    return jsonify({"Routes": routes, "Total": len(routes)})
