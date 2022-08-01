@@ -11,7 +11,7 @@ def initialise_routes(app):
     if app:
         app.add_url_rule('/api/hello/', 'index', index)
         app.add_url_rule('/api/db/', 'db', db)
-        app.add_url_rule('/api/', 'list_routes', list_routes, method=['GET'], defaults={'app': app})
+        app.add_url_rule('/api/', 'list_routes', list_routes, methods=['GET'], defaults={'app': app})
     return None
 
 
